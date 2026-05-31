@@ -6,30 +6,50 @@ The official website of **Maison Sottovoce**.
 
 ## About
 
-This repository holds the source for the Maison Sottovoce brand site. _(Add a sentence or two here describing the house, its collections, and what visitors will find.)_
+This repository holds the source for the Maison Sottovoce brand site, built with
+[Next.js](https://nextjs.org) and [Tailwind CSS](https://tailwindcss.com) and
+deployed as a static site to GitHub Pages.
 
-## Status
+🌐 **Live site:** https://maisonsottovoce-cyber.github.io/sottovoce/
 
-🚧 Early development — the site is being set up.
+## Tech stack
+
+- **Next.js** (App Router) with static export (`output: "export"`)
+- **TypeScript**
+- **Tailwind CSS**
+- **GitHub Pages** for hosting (auto-deployed via GitHub Actions)
 
 ## Getting started
 
-_Setup instructions will be added as the project takes shape. For example:_
+Requires [Node.js](https://nodejs.org) 18.18+ (the project is developed on Node 22+).
 
 ```bash
-# clone the repository
-git clone https://github.com/maisonsottovoce-cyber/sottovoce.git
-cd sottovoce
+# install dependencies
+npm install
+
+# start the dev server at http://localhost:3000
+npm run dev
+
+# build the static site into ./out
+npm run build
 ```
+
+## Deployment
+
+Every push to `main` triggers the workflow in
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the
+static site and publishes it to GitHub Pages. No manual steps required.
 
 ## Structure
 
 | Path | Purpose |
 | --- | --- |
-| `README.md` | Project overview (this file) |
-| `.gitignore` | Files excluded from version control |
-
-_(Update this table as folders and files are added.)_
+| `src/app/` | Pages and layout (App Router) |
+| `src/app/page.tsx` | Home / landing page |
+| `src/app/globals.css` | Global styles and theme tokens |
+| `public/` | Static assets served as-is |
+| `next.config.ts` | Next.js config (static export + Pages base path) |
+| `.github/workflows/` | CI/CD (GitHub Pages deploy) |
 
 ## Contributing
 
