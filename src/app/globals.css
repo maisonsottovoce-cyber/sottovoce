@@ -1,25 +1,187 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f7f5f0; /* warm ivory */
-  --foreground: #1c1a17; /* deep ink */
-  --muted: #6b655c; /* soft taupe */
-  --accent: #8a7a5c; /* understated gold-bronze */
-  --line: #e3ded3; /* hairline */
+/* ──────────────────────────────────────────────
+   Maison SOTTOVOCE — design tokens
+   ────────────────────────────────────────────── */
+@theme {
+  /* Foundation */
+  --color-ink: #0e0d0b;
+  --color-charcoal: #1a1715;
+  --color-espresso: #241b18;
+  --color-cream: #f6f0e7;
+  --color-ivory: #fbf8f2;
+  --color-beige: #d8c8b4;
+  --color-sand: #c9b89f;
+  --color-gold: #b89b5e;
+  --color-purple: #4b245c;
+
+  /* Semantic */
+  --color-line: rgba(36, 27, 24, 0.12);
+  --color-line-dark: rgba(246, 240, 231, 0.16);
+  --color-muted: #6b635a;
+  --color-muted-dark: #b9ac9a;
+
+  /* Type scale helpers */
+  --tracking-luxe: 0.28em;
+  --tracking-wide: 0.18em;
 }
 
+/* Bind next/font CSS variables to Tailwind font utilities */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-line: var(--line);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-inter);
+}
+
+/* ──────────────────────────────────────────────
+   Base
+   ────────────────────────────────────────────── */
+:root {
+  --background: var(--color-ivory);
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Accessible, on-brand focus ring */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+::selection {
+  background: var(--color-purple);
+  color: var(--color-ivory);
+}
+
+/* ──────────────────────────────────────────────
+   Reusable typography classes
+   ────────────────────────────────────────────── */
+.brand-kicker {
+  font-family: var(--font-inter), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-luxe);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.brand-logo {
+  font-family: var(--font-cormorant), serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.editorial-heading {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.section-heading {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+.body-copy {
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.75;
+  color: var(--color-muted);
+}
+
+.nav-link {
+  font-family: var(--font-inter), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.product-title {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.small-caps {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+/* ──────────────────────────────────────────────
+   Utilities
+   ────────────────────────────────────────────── */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Calm fade/rise-in (used sparingly, respects reduced motion) */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise-in {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+  }
 }

@@ -1,0 +1,32 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { mainNav } from "@/data/navigation";
+import { cx } from "@/lib/format";
+
+export function MainNav() {
+  const pathname = usePathname();
+  return (
+    <nav aria-label="Primary">
+      <ul className="flex items-center justify-center gap-7">
+        {mainNav.map((item) => {
+          const active = pathname === item.href;
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={cx(
+                  "nav-link link-underline py-1 transition-colors hover:text-purple",
+                  active ? "text-purple" : "text-ink",
+                )}
+              >
+                {item.label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
