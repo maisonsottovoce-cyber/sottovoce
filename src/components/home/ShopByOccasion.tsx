@@ -20,6 +20,7 @@ export function ShopByOccasion() {
               <ImagePlaceholder
                 label={edit.label}
                 tone={edit.tone}
+                src={edit.src}
                 showLabel={false}
                 className="aspect-[5/6] w-full transition-transform duration-[1.2s] ease-out group-hover:scale-[1.05]"
               />

@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/Button";
 import { VideoPlaceholder } from "@/components/content/VideoPlaceholder";
+import { lb } from "@/lib/asset";
 
 export function BrandFilmPreview() {
   return (
     <section className="bg-ink">
       <div className="relative">
         <div className="aspect-[16/10] w-full sm:aspect-[16/8] lg:aspect-[16/6]">
-          <VideoPlaceholder label="Brand Film" tone="twilight" href="/brand-film" />
+          <VideoPlaceholder label="Brand Film" tone="twilight" src={lb(5)} href="/brand-film" />
         </div>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center text-ivory">
           <span className="brand-kicker text-gold">The Maison Film</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/content/PageHero";
 import { Button } from "@/components/ui/Button";
+import { lb } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Account",
@@ -15,6 +16,7 @@ export default function AccountPage() {
         title="Your Account"
         label="Boutique Hotel Editorial"
         tone="charcoal"
+        src={lb(36)}
         height="sm"
       />
       <div className="mx-auto max-w-md px-6 py-20 text-center">

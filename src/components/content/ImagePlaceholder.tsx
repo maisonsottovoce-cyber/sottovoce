@@ -1,4 +1,5 @@
 import { cx } from "@/lib/format";
+import { assetPath } from "@/lib/asset";
 import type { PlaceholderTone } from "@/data/products";
 
 type ToneConfig = { gradient: string; text: "light" | "dark" };
@@ -66,8 +67,9 @@ export function ImagePlaceholder({
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={src}
+          src={assetPath(src)}
           alt={label}
+          loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
         />
       ) : (

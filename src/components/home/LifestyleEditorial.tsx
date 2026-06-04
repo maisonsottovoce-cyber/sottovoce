@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { PlaceholderTone } from "@/data/products";
 import { SectionHeader } from "@/components/content/SectionHeader";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
+import { lb } from "@/lib/asset";
 
 type Scene = {
   label: string;
@@ -10,6 +11,7 @@ type Scene = {
   tone: PlaceholderTone;
   className: string;
   aspect: string;
+  src: string;
 };
 
 const scenes: Scene[] = [
@@ -20,6 +22,7 @@ const scenes: Scene[] = [
     tone: "charcoal",
     className: "md:col-span-7",
     aspect: "aspect-[4/5] md:aspect-[16/13]",
+    src: lb(33),
   },
   {
     label: "Restaurant Evening",
@@ -28,6 +31,7 @@ const scenes: Scene[] = [
     tone: "espresso",
     className: "md:col-span-5",
     aspect: "aspect-[4/5]",
+    src: lb(27),
   },
   {
     label: "Cocktail Evening",
@@ -36,6 +40,7 @@ const scenes: Scene[] = [
     tone: "twilight",
     className: "md:col-span-5",
     aspect: "aspect-[4/5]",
+    src: lb(5),
   },
   {
     label: "European Balcony",
@@ -44,6 +49,7 @@ const scenes: Scene[] = [
     tone: "ink",
     className: "md:col-span-7",
     aspect: "aspect-[4/5] md:aspect-[16/13]",
+    src: lb(15),
   },
 ];
 
@@ -65,6 +71,7 @@ export function LifestyleEditorial() {
             <ImagePlaceholder
               label={scene.label}
               tone={scene.tone}
+              src={scene.src}
               showLabel={false}
               className={`w-full ${scene.aspect} transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]`}
             />

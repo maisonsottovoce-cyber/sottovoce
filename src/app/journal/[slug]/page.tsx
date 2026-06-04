@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { journal, getArticleBySlug } from "@/data/journal";
-import { getProductBySlug, type Product } from "@/data/products";
+import { getProductBySlug } from "@/lib/catalog";
+import type { Product } from "@/data/products";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
 import { ProductRow } from "@/components/home/ProductRow";
 
@@ -24,9 +25,10 @@ export default async function ArticlePage({ params }: Params) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const callouts = article.productSlugs
-    .map(getProductBySlug)
-    .filter((p): p is Product => Boolean(p));
+  const resolved = await Promise.all(
+    article.productSlugs.map((s) => getProductBySlug(s)),
+  );
+  const callouts = resolved.filter((p): p is Product => Boolean(p));
 
   return (
     <article className="pb-8">
@@ -35,6 +37,7 @@ export default async function ArticlePage({ params }: Params) {
         <ImagePlaceholder
           label={article.title}
           tone={article.tone}
+          src={article.cover}
           showLabel={false}
           className="absolute inset-0 h-full w-full"
         />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { footerSocial } from "@/data/navigation";
 import { PageHero } from "@/components/content/PageHero";
 import { ContactForm } from "@/components/content/ContactForm";
+import { lb } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -17,6 +18,7 @@ export default function ContactPage() {
         description="However we can help — an order, a fitting, or a styling question."
         label="Boutique Hotel Editorial"
         tone="charcoal"
+        src={lb(7)}
         height="sm"
       />
       <section className="mx-auto grid max-w-[1200px] gap-12 px-6 py-20 md:grid-cols-2 lg:gap-20">

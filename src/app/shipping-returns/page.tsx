@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/content/PageHero";
 import { Divider } from "@/components/ui/Divider";
+import { lb } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Shipping & Returns",
@@ -34,6 +35,7 @@ export default function ShippingReturnsPage() {
         title="Shipping & Returns"
         label="European Balcony"
         tone="charcoal"
+        src={lb(24)}
         height="sm"
       />
       <section className="mx-auto max-w-3xl px-6 py-16 md:py-20">

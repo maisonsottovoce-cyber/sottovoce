@@ -1,3 +1,5 @@
+"use client";
+
 export function AnnouncementBar() {
   return (
     <div className="bg-ink text-ivory">

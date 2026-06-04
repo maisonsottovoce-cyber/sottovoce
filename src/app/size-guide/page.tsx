@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/content/PageHero";
 import { Button } from "@/components/ui/Button";
+import { lb } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Size Guide",
@@ -29,6 +30,7 @@ export default function SizeGuidePage() {
         title="Size Guide"
         label="Sculpted Top"
         tone="sand"
+        src={lb(22)}
         height="sm"
       />
       <section className="mx-auto max-w-3xl px-6 py-16 md:py-20">

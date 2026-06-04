@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/content/PageHero";
 import { Accordion, AccordionItem } from "@/components/ui/Accordion";
+import { lb } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -53,6 +54,7 @@ export default function FaqPage() {
         title="Frequently Asked"
         label="Boutique Hotel Editorial"
         tone="espresso"
+        src={lb(40)}
         height="sm"
       />
       <section className="mx-auto max-w-3xl px-6 py-16 md:py-20">

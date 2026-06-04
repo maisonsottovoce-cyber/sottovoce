@@ -2,11 +2,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  products,
+  getProducts,
   getProductBySlug,
   getRelatedProducts,
   getCompleteTheLook,
-} from "@/data/products";
+} from "@/lib/catalog";
 import { ProductGallery } from "@/components/commerce/ProductGallery";
 import { ProductInfo } from "@/components/commerce/ProductInfo";
 import { ProductRow } from "@/components/home/ProductRow";
@@ -14,13 +14,16 @@ import { RecentlyViewed } from "@/components/commerce/RecentlyViewed";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) return { title: "Product" };
   return {
     title: product.name,
@@ -30,11 +33,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Params) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
-  const completeTheLook = getCompleteTheLook(product, 3);
-  const related = getRelatedProducts(product, 4);
+  const completeTheLook = await getCompleteTheLook(product, 3);
+  const related = await getRelatedProducts(product, 4);
 
   return (
     <div className="pb-24 lg:pb-0">

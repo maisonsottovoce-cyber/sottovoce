@@ -29,17 +29,7 @@ function toggle<T>(set: T[], value: T): T[] {
   return set.includes(value) ? set.filter((v) => v !== value) : [...set, value];
 }
 
-export function CollectionView({
-  kicker,
-  title,
-  description,
-  products,
-}: {
-  kicker: string;
-  title: string;
-  description: string;
-  products: Product[];
-}) {
+export function CollectionView({ products }: { products: Product[] }) {
   const [occasions, setOccasions] = useState<Occasion[]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
@@ -95,15 +85,8 @@ export function CollectionView({
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 md:py-16">
-      {/* Heading */}
-      <div className="flex flex-col items-center gap-3 text-center">
-        <span className="brand-kicker text-purple">{kicker}</span>
-        <h1 className="editorial-heading text-4xl sm:text-5xl md:text-6xl">{title}</h1>
-        <p className="body-copy max-w-xl text-sm">{description}</p>
-      </div>
-
       {/* Occasion chips */}
-      <div className="no-scrollbar mt-10 flex justify-start gap-2 overflow-x-auto pb-1 md:justify-center">
+      <div className="no-scrollbar flex justify-start gap-2 overflow-x-auto pb-1 md:justify-center">
         {OCCASIONS.map((o) => {
           const active = occasions.includes(o);
           return (
