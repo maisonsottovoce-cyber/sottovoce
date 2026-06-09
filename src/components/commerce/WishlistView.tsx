@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { useWishlist } from "@/context/WishlistContext";
-import { getProductBySlug, type Product } from "@/data/products";
+import { useCatalog } from "@/lib/catalog-client";
 import { ProductGrid } from "./ProductGrid";
 
 export function WishlistView() {
   const { ids, hydrated } = useWishlist();
-  const items = ids
-    .map(getProductBySlug)
-    .filter((p): p is Product => Boolean(p));
+  const { products } = useCatalog();
+  const items = products.filter((p) => ids.includes(p.slug));
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 md:py-16">
@@ -21,7 +20,7 @@ export function WishlistView() {
         </p>
       </div>
 
-      {hydrated && items.length === 0 ? (
+      {hydrated && ids.length === 0 ? (
         <div className="flex flex-col items-center gap-5 py-20 text-center">
           <p className="body-copy">You haven&apos;t saved any pieces yet.</p>
           <Link

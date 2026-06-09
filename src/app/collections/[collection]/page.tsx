@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import {
-  collections,
-  getCollection,
-  getCollectionProducts,
-} from "@/data/collections";
+import { collections, getCollection } from "@/data/collections";
+import { getCollectionProducts } from "@/lib/catalog";
 import { CollectionView } from "@/components/commerce/CollectionView";
+import { PageHero } from "@/components/content/PageHero";
 
 type Params = { params: Promise<{ collection: string }> };
+
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return collections.map((c) => ({ collection: c.slug }));
@@ -28,14 +28,20 @@ export default async function CollectionPage({ params }: Params) {
   const c = getCollection(collection);
   if (!c) notFound();
 
-  const products = getCollectionProducts(collection);
+  const products = await getCollectionProducts(collection);
 
   return (
-    <CollectionView
-      kicker={c.kicker}
-      title={c.title}
-      description={c.description}
-      products={products}
-    />
+    <>
+      <PageHero
+        kicker={c.kicker}
+        title={c.title}
+        description={c.description}
+        label={c.heroLabel}
+        tone={c.heroTone}
+        src={c.heroSrc}
+        height="md"
+      />
+      <CollectionView products={products} />
+    </>
   );
 }

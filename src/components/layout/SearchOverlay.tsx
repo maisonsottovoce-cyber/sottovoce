@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { useCatalog } from "@/lib/catalog-client";
 import { formatPrice, cx } from "@/lib/format";
 import { CloseIcon, SearchIcon } from "@/components/ui/icons";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [query, setQuery] = useState("");
+  const { products } = useCatalog();
 
   useEffect(() => {
     if (open) {
@@ -38,7 +39,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
           p.occasion.some((o) => o.toLowerCase().includes(q)),
       )
       .slice(0, 6);
-  }, [query]);
+  }, [query, products]);
 
   if (!open) return null;
 

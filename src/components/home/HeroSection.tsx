@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
+import { lb } from "@/lib/asset";
 
 export function HeroSection() {
   return (
@@ -7,6 +8,7 @@ export function HeroSection() {
       <ImagePlaceholder
         label="The Entrance"
         tone="twilight"
+        src={lb(16)}
         showLabel={false}
         className="absolute inset-0 h-full w-full"
       />

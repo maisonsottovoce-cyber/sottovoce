@@ -3,6 +3,7 @@ import { PageHero } from "@/components/content/PageHero";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
 import { Button } from "@/components/ui/Button";
 import { Divider } from "@/components/ui/Divider";
+import { lb } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "About",
@@ -37,6 +38,7 @@ export default function AboutPage() {
         title="Maison SOTTOVOCE"
         label="Boutique Hotel Editorial"
         tone="twilight"
+        src={lb(33)}
         height="lg"
       />
 
@@ -54,7 +56,7 @@ export default function AboutPage() {
       {/* Story */}
       <section className="bg-cream">
         <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28 lg:gap-20">
-          <ImagePlaceholder label="European Balcony" tone="espresso" className="aspect-[4/5] w-full" />
+          <ImagePlaceholder label="European Balcony" tone="espresso" src={lb(31)} className="aspect-[4/5] w-full" />
           <div>
             <span className="brand-kicker text-purple">Our Story</span>
             <h2 className="editorial-heading mt-4 text-3xl sm:text-4xl">

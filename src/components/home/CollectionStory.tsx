@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/Button";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
+import { lb } from "@/lib/asset";
 import type { PlaceholderTone } from "@/data/products";
 
-const looks: { label: string; tone: PlaceholderTone }[] = [
-  { label: "Denim Dress", tone: "sand" },
-  { label: "Tailored Jumpsuit", tone: "espresso" },
-  { label: "Sculpted Corset", tone: "charcoal" },
-  { label: "Evening Dress", tone: "ink" },
+const looks: { label: string; tone: PlaceholderTone; src: string }[] = [
+  { label: "Denim Dress", tone: "sand", src: lb(12) },
+  { label: "Tailored Jumpsuit", tone: "espresso", src: lb(3) },
+  { label: "Sculpted Corset", tone: "charcoal", src: lb(10) },
+  { label: "Evening Dress", tone: "ink", src: lb(4) },
 ];
 
 export function CollectionStory() {
@@ -38,6 +39,7 @@ export function CollectionStory() {
               key={look.label}
               label={look.label}
               tone={look.tone}
+              src={look.src}
               className={
                 i % 3 === 0
                   ? "aspect-[3/4] w-full translate-y-0"

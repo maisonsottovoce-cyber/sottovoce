@@ -10,6 +10,7 @@ export function EditorialCard({ article }: { article: JournalArticle }) {
           <ImagePlaceholder
             label={article.title}
             tone={article.tone}
+            src={article.cover}
             kicker={article.category}
             className="aspect-[4/5] w-full transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
           />

@@ -1,17 +1,18 @@
 import Link from "next/link";
 import type { PlaceholderTone } from "@/data/products";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
+import { lb } from "@/lib/asset";
 
-type Tile = { name: string; phrase: string; href: string; label: string; tone: PlaceholderTone };
+type Tile = { name: string; phrase: string; href: string; label: string; tone: PlaceholderTone; src: string };
 
 const tiles: Tile[] = [
-  { name: "New In", phrase: "The latest silhouettes", href: "/collections/new-in", label: "New In Editorial", tone: "charcoal" },
-  { name: "Dresses", phrase: "For entrances and evenings", href: "/collections/dresses", label: "Evening Dress", tone: "ink" },
-  { name: "Jumpsuits", phrase: "Tailored ease", href: "/collections/jumpsuits", label: "Tailored Jumpsuit", tone: "espresso" },
-  { name: "Tops", phrase: "Sculpted statements", href: "/collections/tops", label: "Sculpted Top", tone: "sand" },
-  { name: "Bottoms", phrase: "Refined foundations", href: "/collections/bottoms", label: "Refined Tailoring", tone: "charcoal" },
-  { name: "Sets", phrase: "Effortless coordination", href: "/collections/sets", label: "Coordinated Set", tone: "cream" },
-  { name: "Cocktail", phrase: "After dark, softly", href: "/collections/cocktail", label: "Cocktail Evening", tone: "twilight" },
+  { name: "New In", phrase: "The latest silhouettes", href: "/collections/new-in", label: "New In Editorial", tone: "charcoal", src: lb(27) },
+  { name: "Dresses", phrase: "For entrances and evenings", href: "/collections/dresses", label: "Evening Dress", tone: "ink", src: lb(8) },
+  { name: "Jumpsuits", phrase: "Tailored ease", href: "/collections/jumpsuits", label: "Tailored Jumpsuit", tone: "espresso", src: lb(31) },
+  { name: "Tops", phrase: "Sculpted statements", href: "/collections/tops", label: "Sculpted Top", tone: "sand", src: lb(9) },
+  { name: "Bottoms", phrase: "Refined foundations", href: "/collections/bottoms", label: "Refined Tailoring", tone: "charcoal", src: lb(26) },
+  { name: "Sets", phrase: "Effortless coordination", href: "/collections/sets", label: "Coordinated Set", tone: "cream", src: lb(34) },
+  { name: "Cocktail", phrase: "After dark, softly", href: "/collections/cocktail", label: "Cocktail Evening", tone: "twilight", src: lb(37) },
 ];
 
 export function CategoryTiles() {
@@ -28,6 +29,7 @@ export function CategoryTiles() {
               <ImagePlaceholder
                 label={tile.label}
                 tone={tile.tone}
+                src={tile.src}
                 showLabel={false}
                 className="aspect-[3/4] w-full transition-transform duration-[1.2s] ease-out group-hover:scale-[1.05]"
               />

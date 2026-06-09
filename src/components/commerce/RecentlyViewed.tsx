@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getProductBySlug, type Product } from "@/data/products";
+import type { Product } from "@/data/products";
+import { useCatalog } from "@/lib/catalog-client";
 import { ProductRow } from "@/components/home/ProductRow";
 
 const KEY = "sottovoce-recently-viewed";
 
 export function RecentlyViewed({ currentSlug }: { currentSlug: string }) {
+  const { products } = useCatalog();
   const [items, setItems] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -20,10 +22,10 @@ export function RecentlyViewed({ currentSlug }: { currentSlug: string }) {
 
     const display = prev
       .filter((s) => s !== currentSlug)
-      .map(getProductBySlug)
+      .map((slug) => products.find((p) => p.slug === slug))
       .filter((p): p is Product => Boolean(p))
       .slice(0, 4);
-    // Derived once from localStorage on mount; intentional state sync.
+    // Derived from localStorage + loaded catalog; intentional state sync.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(display);
 
@@ -33,7 +35,7 @@ export function RecentlyViewed({ currentSlug }: { currentSlug: string }) {
     } catch {
       /* ignore */
     }
-  }, [currentSlug]);
+  }, [currentSlug, products]);
 
   if (items.length === 0) return null;
 

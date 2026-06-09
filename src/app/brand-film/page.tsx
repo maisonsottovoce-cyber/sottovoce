@@ -3,6 +3,7 @@ import { getBestSellers } from "@/data/products";
 import { VideoPlaceholder } from "@/components/content/VideoPlaceholder";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
 import { ProductRow } from "@/components/home/ProductRow";
+import { lb } from "@/lib/asset";
 import type { PlaceholderTone } from "@/data/products";
 
 export const metadata: Metadata = {
@@ -11,24 +12,27 @@ export const metadata: Metadata = {
     "A film about movement, mood, and the quiet confidence of being remembered.",
 };
 
-const sections: { title: string; copy: string; label: string; tone: PlaceholderTone }[] = [
+const sections: { title: string; copy: string; label: string; tone: PlaceholderTone; src: string }[] = [
   {
     title: "Behind the mood",
     copy: "Low light, warm shadow, and the hush of a room before the evening begins.",
     label: "Boutique Hotel Editorial",
     tone: "charcoal",
+    src: lb(33),
   },
   {
     title: "The locations",
     copy: "A European hotel, a balcony above the city, a restaurant at the close of the night.",
     label: "European Balcony",
     tone: "espresso",
+    src: lb(16),
   },
   {
     title: "The silhouettes",
     copy: "Bias-cut evening dresses, sculpted corsets, and tailoring made to move.",
     label: "Evening Dress",
     tone: "ink",
+    src: lb(8),
   },
 ];
 
@@ -40,7 +44,7 @@ export default function BrandFilmPage() {
       {/* Film hero */}
       <section className="relative">
         <div className="aspect-[16/11] w-full sm:aspect-[16/8] lg:aspect-[16/7]">
-          <VideoPlaceholder label="Brand Film" tone="twilight" />
+          <VideoPlaceholder label="Brand Film" tone="twilight" src={lb(4)} />
         </div>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-5 px-6 text-center">
           <span className="brand-kicker text-gold">The Maison Film</span>
@@ -67,7 +71,7 @@ export default function BrandFilmPage() {
                 i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <ImagePlaceholder label={s.label} tone={s.tone} className="aspect-[4/3] w-full" />
+              <ImagePlaceholder label={s.label} tone={s.tone} src={s.src} className="aspect-[4/3] w-full" />
               <div>
                 <span className="brand-kicker text-gold">0{i + 1}</span>
                 <h2 className="editorial-heading mt-3 text-3xl text-ivory sm:text-4xl">

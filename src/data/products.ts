@@ -5,6 +5,8 @@
    components don't need to change.
    ────────────────────────────────────────────── */
 
+import { lb } from "@/lib/asset";
+
 export type PlaceholderTone =
   | "ink"
   | "charcoal"
@@ -82,8 +84,8 @@ export const products: Product[] = [
     stylistNote:
       "Wear it with tailored trousers for dinner, or with the matching skirt for an after-dark entrance.",
     images: [
-      { label: "Evening Corset", tone: "espresso" },
-      { label: "Cocktail Evening", tone: "ink" },
+      { label: "Evening Corset", tone: "espresso", src: lb(10) },
+      { label: "Cocktail Evening", tone: "ink", src: lb(5) },
       { label: "Fabric Detail", tone: "sand" },
       { label: "Back View", tone: "charcoal" },
       { label: "Movement", tone: "twilight" },
@@ -111,8 +113,8 @@ export const products: Product[] = [
     stylistNote:
       "Let the silhouette speak — a single earring and a bare shoulder are enough.",
     images: [
-      { label: "Evening Dress", tone: "ink" },
-      { label: "Boutique Hotel Editorial", tone: "charcoal" },
+      { label: "Evening Dress", tone: "ink", src: lb(4) },
+      { label: "Boutique Hotel Editorial", tone: "charcoal", src: lb(41) },
       { label: "Silk Detail", tone: "espresso" },
       { label: "Back View", tone: "twilight" },
     ],
@@ -139,8 +141,8 @@ export const products: Product[] = [
     stylistNote:
       "Day to night in one piece — flats and a blazer by day, heels and gold after dark.",
     images: [
-      { label: "Tailored Jumpsuit", tone: "charcoal" },
-      { label: "European Balcony", tone: "espresso" },
+      { label: "Tailored Jumpsuit", tone: "charcoal", src: lb(3) },
+      { label: "European Balcony", tone: "espresso", src: lb(31) },
       { label: "Tailoring Detail", tone: "sand" },
       { label: "Back View", tone: "ink" },
     ],
@@ -167,8 +169,8 @@ export const products: Product[] = [
     stylistNote:
       "The case for elevated denim: wear it to lunch, keep it on through the evening.",
     images: [
-      { label: "Denim Dress", tone: "sand" },
-      { label: "Terrace Afternoon", tone: "cream" },
+      { label: "Denim Dress", tone: "sand", src: lb(12) },
+      { label: "Terrace Afternoon", tone: "cream", src: lb(26) },
       { label: "Seam Detail", tone: "espresso" },
       { label: "Back View", tone: "charcoal" },
     ],
@@ -194,8 +196,8 @@ export const products: Product[] = [
     fabricCare: "100% sandwashed silk. Hand wash cold or dry clean.",
     stylistNote: "Tuck into wide trousers, or layer beneath the Verona jumpsuit.",
     images: [
-      { label: "Satin Top", tone: "sand" },
-      { label: "Cocktail Evening", tone: "twilight" },
+      { label: "Satin Top", tone: "sand", src: lb(9) },
+      { label: "Cocktail Evening", tone: "twilight", src: lb(21) },
       { label: "Cowl Detail", tone: "espresso" },
       { label: "Back View", tone: "charcoal" },
     ],
@@ -222,8 +224,8 @@ export const products: Product[] = [
     stylistNote:
       "The foundation piece — pair with the Alessia corset for an effortless evening two-piece.",
     images: [
-      { label: "Wide-Leg Trouser", tone: "charcoal" },
-      { label: "Restaurant Evening", tone: "ink" },
+      { label: "Wide-Leg Trouser", tone: "charcoal", src: lb(26) },
+      { label: "Restaurant Evening", tone: "ink", src: lb(12) },
       { label: "Fabric Detail", tone: "sand" },
       { label: "Back View", tone: "espresso" },
     ],
@@ -249,8 +251,8 @@ export const products: Product[] = [
     stylistNote:
       "Wear together for coordinated ease, or break it apart across your wardrobe.",
     images: [
-      { label: "Two-Piece Set", tone: "cream" },
-      { label: "European Balcony", tone: "sand" },
+      { label: "Two-Piece Set", tone: "cream", src: lb(34) },
+      { label: "European Balcony", tone: "sand", src: lb(30) },
       { label: "Knit Detail", tone: "espresso" },
       { label: "Back View", tone: "charcoal" },
     ],
@@ -276,8 +278,8 @@ export const products: Product[] = [
     stylistNote:
       "The cocktail-hour answer — sheer tights and a heel, nothing more.",
     images: [
-      { label: "Cocktail Dress", tone: "purple" },
-      { label: "Cocktail Evening", tone: "ink" },
+      { label: "Cocktail Dress", tone: "purple", src: lb(17) },
+      { label: "Cocktail Evening", tone: "ink", src: lb(14) },
       { label: "Crepe Detail", tone: "espresso" },
       { label: "Back View", tone: "twilight" },
     ],
@@ -302,8 +304,8 @@ export const products: Product[] = [
     fabricCare: "Compact jersey. Hand wash cold, dry flat.",
     stylistNote: "A long coat over the shoulders turns it into an entrance.",
     images: [
-      { label: "Sculpted Midi", tone: "charcoal" },
-      { label: "Boutique Hotel Editorial", tone: "ink" },
+      { label: "Sculpted Midi", tone: "charcoal", src: lb(22) },
+      { label: "Boutique Hotel Editorial", tone: "ink", src: lb(2) },
       { label: "Jersey Detail", tone: "espresso" },
       { label: "Back View", tone: "twilight" },
     ],
@@ -329,8 +331,8 @@ export const products: Product[] = [
     stylistNote:
       "The Alessia corset and the Noa skirt — the Maison's quiet two-piece for evening.",
     images: [
-      { label: "Evening Skirt", tone: "ink" },
-      { label: "Restaurant Evening", tone: "charcoal" },
+      { label: "Evening Skirt", tone: "ink", src: lb(36) },
+      { label: "Restaurant Evening", tone: "charcoal", src: lb(16) },
       { label: "Bias Detail", tone: "espresso" },
       { label: "Movement", tone: "twilight" },
     ],
@@ -354,8 +356,8 @@ export const products: Product[] = [
     fabricCare: "Recycled crepe. Hand wash cold, dry flat.",
     stylistNote: "Pair with the Milano trouser for a sculptural evening line.",
     images: [
-      { label: "Draped Top", tone: "sand" },
-      { label: "European Balcony", tone: "cream" },
+      { label: "Draped Top", tone: "sand", src: lb(23) },
+      { label: "European Balcony", tone: "cream", src: lb(19) },
       { label: "Drape Detail", tone: "espresso" },
       { label: "Back View", tone: "charcoal" },
     ],
@@ -380,8 +382,8 @@ export const products: Product[] = [
     stylistNote:
       "The travel uniform — open the shirt over a swimsuit by day, button it for dinner.",
     images: [
-      { label: "Linen Set", tone: "cream" },
-      { label: "Terrace Afternoon", tone: "sand" },
+      { label: "Linen Set", tone: "cream", src: lb(7) },
+      { label: "Terrace Afternoon", tone: "sand", src: lb(24) },
       { label: "Linen Detail", tone: "espresso" },
       { label: "Back View", tone: "charcoal" },
     ],

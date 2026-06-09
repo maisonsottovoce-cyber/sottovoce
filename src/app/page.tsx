@@ -1,4 +1,4 @@
-import { getNewArrivals } from "@/data/products";
+import { getNewArrivals } from "@/lib/catalog";
 import { HeroSection } from "@/components/home/HeroSection";
 import { CategoryTiles } from "@/components/home/CategoryTiles";
 import { ProductRow } from "@/components/home/ProductRow";
@@ -8,8 +8,10 @@ import { LifestyleEditorial } from "@/components/home/LifestyleEditorial";
 import { BrandFilmPreview } from "@/components/home/BrandFilmPreview";
 import { TrustBar } from "@/components/home/TrustBar";
 
-export default function Home() {
-  const newArrivals = getNewArrivals(8);
+export const revalidate = 60;
+
+export default async function Home() {
+  const newArrivals = await getNewArrivals(8);
   return (
     <>
       <HeroSection />

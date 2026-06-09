@@ -8,6 +8,7 @@ export function PageHero({
   description,
   label,
   tone = "charcoal",
+  src,
   height = "md",
   align = "center",
 }: {
@@ -16,6 +17,7 @@ export function PageHero({
   description?: string;
   label: string;
   tone?: PlaceholderTone;
+  src?: string;
   height?: "sm" | "md" | "lg";
   align?: "center" | "left";
 }) {
@@ -30,6 +32,7 @@ export function PageHero({
       <ImagePlaceholder
         label={label}
         tone={tone}
+        src={src}
         showLabel={false}
         className="absolute inset-0 h-full w-full"
       />

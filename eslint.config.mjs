@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Dev-only image tooling (uses sharp, not an app dependency)
+    "scripts/**",
   ]),
 ]);
 
