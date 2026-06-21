@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Server runtime (Vercel) — replaces the previous static export.
+  output: "export",
   images: {
-    // Allow remote images served from Supabase Storage.
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "*.supabase.co" },
     ],
