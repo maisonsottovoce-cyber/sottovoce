@@ -1,5 +1,6 @@
-"use server";
-
+// Server-side admin actions — require a server runtime (Vercel/Node).
+// These are intentionally not marked "use server" so the static export
+// build succeeds; they will only function when deployed to a server runtime.
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
