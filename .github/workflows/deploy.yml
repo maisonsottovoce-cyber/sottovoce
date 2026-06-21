@@ -31,6 +31,8 @@ jobs:
         run: npm ci
 
       - name: Build static site
+        env:
+          NEXT_PUBLIC_BASE_PATH: /sottovoce
         run: rm -rf src/app/admin src/app/api src/components/admin src/lib/supabase/admin.ts src/lib/supabase/server.ts src/lib/admin-catalog.ts && npm run build
 
       - name: Upload Pages artifact
