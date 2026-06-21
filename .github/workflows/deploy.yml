@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Build static site
-        run: rm -rf src/app/admin src/app/api src/lib/supabase/admin.ts src/lib/supabase/server.ts src/lib/admin-catalog.ts && npm run build
+        run: rm -rf src/app/admin src/app/api src/components/admin src/lib/supabase/admin.ts src/lib/supabase/server.ts src/lib/admin-catalog.ts && npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
