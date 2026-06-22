@@ -52,6 +52,38 @@ const products = [
   { slug: "the-capri-linen-set", name: "The Capri Linen Set", category: "sets", price: 310, color: "Ecru", availableColors: [C.ecru, C.sand], occasion: ["Vacation", "Day to Night"], description: "A breathable linen shirt and trouser set for slow mornings and warm evenings.", fit: "Easy and relaxed throughout. Take your usual size.", fabricCare: "100% European linen. Machine wash cold, line dry.", stylistNote: "The travel uniform — open the shirt over a swimsuit by day, button it for dinner.", isNew: true, isBestSeller: false, files: ["img_07.jpg", "img_24.jpg"] },
 ];
 
+// Local /public path for a lookbook image — used as the hero/cover URL for
+// seeded collections, occasion tiles and journal covers (the files already
+// ship in /public; the admin replaces them with Storage uploads when editing).
+const lb = (n) => `/images/lookbook/img_${String(n).padStart(2, "0")}.jpg`;
+
+const collections = [
+  { slug: "new-in", title: "New In", kicker: "The latest silhouettes", description: "Silhouettes made for the next invitation — the newest arrivals to the Maison.", heroLabel: "New In Editorial", heroTone: "charcoal", heroImageUrl: lb(27) },
+  { slug: "dresses", title: "Dresses", kicker: "For entrances and evenings", description: "Silhouettes for the entrance, the dinner, the evening after.", heroLabel: "Evening Dress Editorial", heroTone: "ink", heroImageUrl: lb(8) },
+  { slug: "jumpsuits", title: "Jumpsuits", kicker: "Tailored ease", description: "One considered piece, from the reservation to the rooftop.", heroLabel: "Tailored Jumpsuit", heroTone: "espresso", heroImageUrl: lb(31) },
+  { slug: "tops", title: "Tops", kicker: "Sculpted statements", description: "Corsets, camisoles and draped shoulders — the quiet centre of an evening look.", heroLabel: "Sculpted Top", heroTone: "sand", heroImageUrl: lb(9) },
+  { slug: "bottoms", title: "Bottoms", kicker: "Refined foundations", description: "Column trousers and bias skirts to build the rest of the wardrobe around.", heroLabel: "Refined Tailoring", heroTone: "charcoal", heroImageUrl: lb(26) },
+  { slug: "sets", title: "Sets", kicker: "Effortless coordination", description: "Matched pieces designed to move as one — or to live apart.", heroLabel: "Coordinated Set", heroTone: "cream", heroImageUrl: lb(34) },
+  { slug: "cocktail", title: "Cocktail", kicker: "After dark, softly", description: "The cocktail-hour edit — for the room, the reservation, the first drink.", heroLabel: "Cocktail Evening", heroTone: "twilight", heroImageUrl: lb(17) },
+  { slug: "evening", title: "Evening", kicker: "After-dark silhouettes", description: "Full-length silhouettes for the evenings worth remembering.", heroLabel: "Evening Editorial", heroTone: "ink", heroImageUrl: lb(4) },
+];
+
+const occasionEdits = [
+  { title: "The Cocktail Edit", caption: "After dark, softly", href: "/collections/cocktail", tone: "twilight", label: "Cocktail Evening", imageUrl: lb(17) },
+  { title: "The Dinner Reservation", caption: "For the table", href: "/collections/dresses", tone: "espresso", label: "Restaurant Evening", imageUrl: lb(41) },
+  { title: "The Evening Edit", caption: "Full-length silhouettes", href: "/collections/evening", tone: "ink", label: "Evening Editorial", imageUrl: lb(4) },
+  { title: "The Hotel Edit", caption: "A quiet arrival", href: "/collections/sets", tone: "charcoal", label: "Boutique Hotel Editorial", imageUrl: lb(33) },
+  { title: "The Terrace Edit", caption: "Warm-weather ease", href: "/collections/jumpsuits", tone: "sand", label: "European Balcony", imageUrl: lb(16) },
+  { title: "The Entrance Edit", caption: "Never forgotten", href: "/collections/new-in", tone: "purple", label: "The Entrance", imageUrl: lb(29) },
+];
+
+const journal = [
+  { slug: "the-cocktail-edit", title: "The Cocktail Edit", category: "Styling", dateLabel: "May 2026", excerpt: "How to dress for the hour between arrival and the first drink — softly, and with intent.", tone: "twilight", coverUrl: lb(27), productSlugs: ["the-amara-cocktail-dress", "the-alessia-corset", "the-bianca-satin-top"], body: ["There is a particular hour — after the day has closed and before the evening fully begins — when a room is at its most attentive. The cocktail hour rewards restraint. It is not the place for the loudest dress, but for the most considered one.", "Begin with a single sculpted piece: a corset, a draped shoulder, a gathered waist. Let the silhouette do the work, and keep everything else quiet. A heel, sheer tights, one earring left at home.", "The Maison's cocktail edit is built around pieces that hold their shape through a long evening — fabrics that move when you move, and settle when you stand still."] },
+  { slug: "dressing-for-a-dinner-reservation", title: "How to Dress for a Dinner Reservation", category: "Styling", dateLabel: "April 2026", excerpt: "The reservation is a stage. Here is how to arrive at the table already at ease.", tone: "espresso", coverUrl: lb(41), productSlugs: ["the-milano-wide-leg-trouser", "the-bianca-satin-top", "the-sofia-sculpted-midi"], body: ["A dinner reservation asks for something between day and evening — polished enough for the room, easy enough to sit, linger, and stay past dessert.", "We favour a column trouser and a liquid top: the Milano with the Bianca, a line that reads elegant from across the room and feels effortless up close.", "Choose pieces you can wear from the aperitivo to the last espresso without a second thought. The best evening clothes are the ones you forget you're wearing."] },
+  { slug: "the-hotel-edit", title: "The Hotel Edit", category: "Travel", dateLabel: "March 2026", excerpt: "A weekend wardrobe for boutique hotels, slow mornings, and balconies above the city.", tone: "charcoal", coverUrl: lb(7), productSlugs: ["the-capri-linen-set", "the-celeste-two-piece-set", "the-verona-tailored-jumpsuit"], body: ["Packing for a boutique hotel is an exercise in editing. The aim is a small wardrobe that moves through every hour: breakfast on the terrace, an afternoon in the city, dinner downstairs.", "Sets earn their place — matched pieces that travel as one outfit and live as several. Linen by day, knit by evening, tailoring for the night you decide to stay out.", "Pack less. Choose pieces that work together. Leave room in the case for the things you'll find."] },
+  { slug: "day-to-night-silhouettes", title: "Day to Night Silhouettes", category: "Styling", dateLabel: "February 2026", excerpt: "The pieces that carry you from a working afternoon to an unplanned evening.", tone: "ink", coverUrl: lb(3), productSlugs: ["the-verona-tailored-jumpsuit", "the-lucia-denim-dress", "the-sofia-sculpted-midi"], body: ["The most useful pieces in a wardrobe are the ones that don't ask to be changed. A jumpsuit that reads sharp by day and soft by night. A midi that moves from desk to dinner with a change of shoe.", "Build day-to-night around one strong silhouette and let accessories do the shifting — flats and a blazer become heels and gold without a stop at home.", "Quiet confidence is knowing you're dressed for whatever the evening becomes."] },
+];
+
 const contentType = (f) => (f.endsWith(".png") ? "image/png" : "image/jpeg");
 
 async function uploadImage(slug, file) {
@@ -64,8 +96,9 @@ async function uploadImage(slug, file) {
   return db.storage.from(BUCKET).getPublicUrl(key).data.publicUrl;
 }
 
-async function seed() {
-  for (const p of products) {
+async function seedProducts() {
+  for (let idx = 0; idx < products.length; idx++) {
+    const p = products[idx];
     const { data: up, error: upErr } = await db
       .from("products")
       .upsert(
@@ -82,6 +115,7 @@ async function seed() {
           fit: p.fit,
           fabric_care: p.fabricCare,
           stylist_note: p.stylistNote,
+          sort_order: idx,
           is_new: p.isNew,
           is_best_seller: p.isBestSeller,
           published: true,
@@ -99,9 +133,98 @@ async function seed() {
       rows.push({ product_id: up.id, url, label: p.name, position: i });
     }
     await db.from("product_images").insert(rows);
+
+    await db.from("product_sizes").delete().eq("product_id", up.id);
+    await db.from("product_sizes").insert(
+      SIZES.map((size, i) => ({ product_id: up.id, size, available: true, position: i })),
+    );
     console.log(`✓ ${p.name} (${p.files.length} photos)`);
   }
-  console.log(`\nSeeded ${products.length} products.`);
+  console.log(`Seeded ${products.length} products.`);
+}
+
+async function seedCollections() {
+  for (let i = 0; i < collections.length; i++) {
+    const c = collections[i];
+    const { error } = await db.from("collections").upsert(
+      {
+        slug: c.slug,
+        title: c.title,
+        kicker: c.kicker,
+        description: c.description,
+        hero_label: c.heroLabel,
+        hero_tone: c.heroTone,
+        hero_image_url: c.heroImageUrl,
+        sort_order: i,
+        published: true,
+      },
+      { onConflict: "slug" },
+    );
+    if (error) throw new Error(`collection ${c.slug}: ${error.message}`);
+  }
+  console.log(`Seeded ${collections.length} collections.`);
+}
+
+async function seedOccasionEdits() {
+  await db.from("occasion_edits").delete().neq("id", "00000000-0000-0000-0000-000000000000");
+  const { error } = await db.from("occasion_edits").insert(
+    occasionEdits.map((o, i) => ({
+      title: o.title,
+      caption: o.caption,
+      href: o.href,
+      tone: o.tone,
+      label: o.label,
+      image_url: o.imageUrl,
+      sort_order: i,
+    })),
+  );
+  if (error) throw new Error(`occasion edits: ${error.message}`);
+  console.log(`Seeded ${occasionEdits.length} occasion tiles.`);
+}
+
+async function seedJournal() {
+  for (let i = 0; i < journal.length; i++) {
+    const a = journal[i];
+    const { error } = await db.from("journal_articles").upsert(
+      {
+        slug: a.slug,
+        title: a.title,
+        category: a.category,
+        date_label: a.dateLabel,
+        excerpt: a.excerpt,
+        tone: a.tone,
+        cover_url: a.coverUrl,
+        product_slugs: a.productSlugs,
+        body: a.body,
+        sort_order: i,
+        published: true,
+      },
+      { onConflict: "slug" },
+    );
+    if (error) throw new Error(`article ${a.slug}: ${error.message}`);
+  }
+  console.log(`Seeded ${journal.length} journal articles.`);
+}
+
+async function seedSettings() {
+  const { error } = await db.from("site_settings").upsert({
+    id: true,
+    announcement_text: "Complimentary Shipping on All U.S. Orders",
+    announcement_enabled: true,
+    free_shipping_threshold: null,
+    shipping_returns_copy: "",
+  });
+  if (error) throw new Error(`site settings: ${error.message}`);
+  console.log("Seeded site settings.");
+}
+
+async function seed() {
+  await seedProducts();
+  await seedCollections();
+  await seedOccasionEdits();
+  await seedJournal();
+  await seedSettings();
+  console.log("\nDone.");
 }
 
 seed().catch((e) => {

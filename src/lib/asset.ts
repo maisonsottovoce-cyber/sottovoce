@@ -1,6 +1,6 @@
-// Base path for /public assets. Matches next.config's basePath so raw
-// <img src="/images/..."> URLs resolve under /sottovoce on GitHub Pages.
-// Empty for local dev and Vercel (root domain).
+// Optional base path prefix for raw /public asset URLs. Empty on Vercel
+// (root domain); kept env-driven so the site could also be hosted under a
+// subpath later without touching callers.
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export function assetPath(src?: string): string | undefined {

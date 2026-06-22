@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { occasionEdits } from "@/data/collections";
+import { getOccasionEdits } from "@/lib/catalog";
 import { SectionHeader } from "@/components/content/SectionHeader";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
 
-export function ShopByOccasion() {
+export async function ShopByOccasion() {
+  const occasionEdits = await getOccasionEdits();
   return (
     <section className="bg-espresso px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-[1400px]">

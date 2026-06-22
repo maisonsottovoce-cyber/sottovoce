@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { journal } from "@/data/journal";
+import { getJournal } from "@/lib/catalog";
 import { PageHero } from "@/components/content/PageHero";
 import { EditorialCard } from "@/components/content/EditorialCard";
 import { lb } from "@/lib/asset";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "The Maison Notes",
@@ -10,7 +12,8 @@ export const metadata: Metadata = {
     "Styling, travel, and the art of the entrance — editorial notes from Maison SOTTOVOCE.",
 };
 
-export default function JournalPage() {
+export default async function JournalPage() {
+  const journal = await getJournal();
   return (
     <>
       <PageHero

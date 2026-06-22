@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const product = await getProductBySlug(slug);
   if (!product) return { title: "Product" };
   return {
-    title: product.name,
-    description: product.description,
+    title: product.seoTitle || product.name,
+    description: product.seoDescription || product.description,
   };
 }
 
@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: Params) {
 
       {/* Gallery + Info */}
       <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-10 sm:px-8 lg:grid-cols-2 lg:gap-16">
-        <ProductGallery images={product.images} />
+        <ProductGallery images={product.images} videoUrl={product.videoUrl} />
         <div className="lg:py-6">
           <ProductInfo product={product} />
         </div>

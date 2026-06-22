@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { ChromeGate } from "@/components/layout/ChromeGate";
+import { getSiteSettings } from "@/lib/catalog";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -32,17 +33,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-ivory">
         <WishlistProvider>
           <CartProvider>
-            <ChromeGate>{children}</ChromeGate>
+            <ChromeGate
+              announcement={{
+                text: settings.announcementText,
+                enabled: settings.announcementEnabled,
+              }}
+            >
+              {children}
+            </ChromeGate>
           </CartProvider>
         </WishlistProvider>
       </body>

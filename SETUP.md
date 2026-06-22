@@ -46,10 +46,10 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 
 ## 5. Seed the original 12 dresses (optional but recommended)
 
-This uploads the existing lookbook photos to Supabase and creates the 12 products:
+This uploads the existing lookbook photos to Supabase and creates the 12 products,
+plus the 8 collections, occasion tiles, 4 journal articles, and default site settings:
 
 ```powershell
-$env:Path = "C:\Users\karin\AppData\Local\nodejs-portable\node-v24.16.0-win-x64;$env:Path"
 node --env-file=.env.local scripts/seed.mjs
 ```
 
