@@ -44,13 +44,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-ivory text-ink">
       <header className="bg-ink text-ivory">
-        <div className="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-4 px-6 py-4">
           <Link href="/admin" className="brand-logo text-lg">
             SOTTOVOCE <span className="text-gold">Atelier</span>
           </Link>
-          <Link href="/" className="small-caps text-cream/80 hover:text-gold">
-            View site
-          </Link>
+          <nav className="flex items-center gap-5">
+            {[
+              { href: "/admin", label: "Products" },
+              { href: "/admin/collections", label: "Collections" },
+              { href: "/admin/journal", label: "Journal" },
+              { href: "/admin/settings", label: "Settings" },
+            ].map((l) => (
+              <Link key={l.href} href={l.href} className="small-caps text-cream/80 hover:text-gold">
+                {l.label}
+              </Link>
+            ))}
+            <Link href="/" className="small-caps text-cream/60 hover:text-gold">
+              View site
+            </Link>
+          </nav>
         </div>
       </header>
       <div className="mx-auto max-w-[1100px] px-6 py-10">{children}</div>

@@ -26,14 +26,21 @@ export function ProductInfo({ product }: { product: Product }) {
       <div className="flex flex-col gap-1">
         <span className="brand-kicker text-purple">Maison SOTTOVOCE</span>
         <h1 className="editorial-heading mt-1 text-3xl sm:text-4xl">{product.name}</h1>
-        <p className="mt-2 text-lg tabular-nums text-ink">{formatPrice(product.price)}</p>
+        {product.compareAtPrice && product.compareAtPrice > product.price ? (
+          <p className="mt-2 text-lg tabular-nums">
+            <span className="text-muted line-through">{formatPrice(product.compareAtPrice)}</span>{" "}
+            <span className="text-purple">{formatPrice(product.price)}</span>
+          </p>
+        ) : (
+          <p className="mt-2 text-lg tabular-nums text-ink">{formatPrice(product.price)}</p>
+        )}
       </div>
 
       <p className="body-copy mt-5 text-[0.95rem] italic">{product.description}</p>
 
       <div className="mt-8 flex flex-col gap-7">
         <ColorSelector colors={product.availableColors} value={color} onChange={setColor} />
-        <SizeSelector sizes={product.sizes} value={size} onChange={handleSize} error={error} />
+        <SizeSelector sizes={product.sizes} sizeStock={product.sizeStock} value={size} onChange={handleSize} error={error} />
 
         <div className="flex items-center gap-4">
           <span className="small-caps text-muted">Quantity</span>

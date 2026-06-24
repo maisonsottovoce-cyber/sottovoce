@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# claude code local tooling (MCP servers, agent state)
+.mcp.json
+.claude/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

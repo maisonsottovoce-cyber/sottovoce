@@ -1,28 +1,30 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { journal, getArticleBySlug } from "@/data/journal";
-import { getProductBySlug } from "@/lib/catalog";
+import { getJournal, getArticleBySlug, getProductBySlug } from "@/lib/catalog";
 import type { Product } from "@/data/products";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
 import { ProductRow } from "@/components/home/ProductRow";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const journal = await getJournal();
   return journal.map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return { title: "Journal" };
   return { title: article.title, description: article.excerpt };
 }
 
 export default async function ArticlePage({ params }: Params) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) notFound();
 
   const resolved = await Promise.all(

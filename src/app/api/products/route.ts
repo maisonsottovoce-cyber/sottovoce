@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getProducts } from "@/lib/catalog";
 
-export const dynamic = "force-static";
+export const revalidate = 60;
 
 // Public catalog feed consumed by client components (search, wishlist, recently viewed).
 export async function GET() {

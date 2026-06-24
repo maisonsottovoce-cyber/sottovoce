@@ -26,6 +26,9 @@ export type ProductImage = {
 
 export type ColorOption = { name: string; hex: string };
 
+/** Per-size availability / stock. */
+export type SizeStock = { size: string; available: boolean; quantity?: number };
+
 export type CategorySlug =
   | "dresses"
   | "jumpsuits"
@@ -58,6 +61,16 @@ export type Product = {
   images: ProductImage[];
   isNew?: boolean;
   isBestSeller?: boolean;
+  /** Original price, when the item is marked down (price = sale price). */
+  compareAtPrice?: number;
+  /** Manual display order on the storefront (ascending). */
+  sortOrder?: number;
+  seoTitle?: string;
+  seoDescription?: string;
+  /** Per-product video (uploaded clip or external URL). */
+  videoUrl?: string;
+  /** Per-size availability; when present, drives sold-out states. */
+  sizeStock?: SizeStock[];
 };
 
 const SIZES_APPAREL = ["XS", "S", "M", "L", "XL"];

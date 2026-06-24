@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/content/PageHero";
 import { Divider } from "@/components/ui/Divider";
 import { lb } from "@/lib/asset";
+import { getSiteSettings } from "@/lib/catalog";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Shipping & Returns",
@@ -27,7 +30,13 @@ const blocks = [
   },
 ];
 
-export default function ShippingReturnsPage() {
+export default async function ShippingReturnsPage() {
+  const settings = await getSiteSettings();
+  const customCopy = settings.shippingReturnsCopy.trim();
+  const customParagraphs = customCopy
+    ? customCopy.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean)
+    : [];
+
   return (
     <>
       <PageHero
@@ -39,15 +48,25 @@ export default function ShippingReturnsPage() {
         height="sm"
       />
       <section className="mx-auto max-w-3xl px-6 py-16 md:py-20">
-        <div className="flex flex-col">
-          {blocks.map((b, i) => (
-            <div key={b.title}>
-              {i > 0 ? <Divider className="my-10" /> : null}
-              <h2 className="editorial-heading text-2xl sm:text-3xl">{b.title}</h2>
-              <p className="body-copy mt-4">{b.body}</p>
-            </div>
-          ))}
-        </div>
+        {customParagraphs.length > 0 ? (
+          <div className="flex flex-col gap-5">
+            {customParagraphs.map((p, i) => (
+              <p key={i} className="body-copy">
+                {p}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col">
+            {blocks.map((b, i) => (
+              <div key={b.title}>
+                {i > 0 ? <Divider className="my-10" /> : null}
+                <h2 className="editorial-heading text-2xl sm:text-3xl">{b.title}</h2>
+                <p className="body-copy mt-4">{b.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </>
   );

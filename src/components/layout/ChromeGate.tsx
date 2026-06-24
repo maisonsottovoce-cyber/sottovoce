@@ -12,7 +12,13 @@ import { CartDrawer } from "@/components/commerce/CartDrawer";
  * around all pages except the admin dashboard, which has its own layout.
  * Storefront pages are passed in as server-rendered `children`.
  */
-export function ChromeGate({ children }: { children: ReactNode }) {
+export function ChromeGate({
+  children,
+  announcement,
+}: {
+  children: ReactNode;
+  announcement?: { text: string; enabled: boolean };
+}) {
   const pathname = usePathname();
 
   if (pathname?.startsWith("/admin")) {
@@ -21,7 +27,7 @@ export function ChromeGate({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <AnnouncementBar />
+      <AnnouncementBar text={announcement?.text} enabled={announcement?.enabled} />
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
