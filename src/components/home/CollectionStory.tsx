@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
+import { Reveal } from "@/components/motion/Reveal";
 import { lb } from "@/lib/asset";
 import type { PlaceholderTone } from "@/data/products";
 
@@ -14,7 +15,7 @@ export function CollectionStory() {
   return (
     <section className="bg-cream">
       <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28 lg:gap-20">
-        <div className="order-2 md:order-1">
+        <Reveal className="order-2 md:order-1">
           <span className="brand-kicker text-purple">The Collection</span>
           <h2 className="editorial-heading mt-4 text-4xl leading-[1.05] sm:text-5xl">
             Effortless looks.
@@ -31,21 +32,22 @@ export function CollectionStory() {
               Explore the Collection
             </Button>
           </div>
-        </div>
+        </Reveal>
 
         <div className="order-1 grid grid-cols-2 gap-4 md:order-2">
           {looks.map((look, i) => (
-            <ImagePlaceholder
+            <Reveal
               key={look.label}
-              label={look.label}
-              tone={look.tone}
-              src={look.src}
-              className={
-                i % 3 === 0
-                  ? "aspect-[3/4] w-full translate-y-0"
-                  : "aspect-[3/4] w-full md:translate-y-8"
-              }
-            />
+              delay={(i % 2) * 0.1}
+              className={i % 3 === 0 ? "translate-y-0" : "md:translate-y-8"}
+            >
+              <ImagePlaceholder
+                label={look.label}
+                tone={look.tone}
+                src={look.src}
+                className="aspect-[3/4] w-full"
+              />
+            </Reveal>
           ))}
         </div>
       </div>

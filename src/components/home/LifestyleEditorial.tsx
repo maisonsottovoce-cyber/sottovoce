@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { PlaceholderTone } from "@/data/products";
 import { SectionHeader } from "@/components/content/SectionHeader";
 import { ImagePlaceholder } from "@/components/content/ImagePlaceholder";
+import { Reveal } from "@/components/motion/Reveal";
 import { lb } from "@/lib/asset";
 
 type Scene = {
@@ -12,6 +13,7 @@ type Scene = {
   className: string;
   aspect: string;
   src: string;
+  videoSrc?: string;
 };
 
 const scenes: Scene[] = [
@@ -23,6 +25,7 @@ const scenes: Scene[] = [
     className: "md:col-span-7",
     aspect: "aspect-[4/5] md:aspect-[16/13]",
     src: lb(33),
+    videoSrc: "/videos/editorial-hotel.mp4",
   },
   {
     label: "Restaurant Evening",
@@ -50,6 +53,7 @@ const scenes: Scene[] = [
     className: "md:col-span-7",
     aspect: "aspect-[4/5] md:aspect-[16/13]",
     src: lb(15),
+    videoSrc: "/videos/editorial-balcony.mp4",
   },
 ];
 
@@ -62,26 +66,28 @@ export function LifestyleEditorial() {
         subtitle="Dressed for the room, the reservation, the city, the night."
       />
       <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-12">
-        {scenes.map((scene) => (
-          <Link
-            key={scene.caption}
-            href={scene.href}
-            className={`group relative block overflow-hidden ${scene.className}`}
-          >
-            <ImagePlaceholder
-              label={scene.label}
-              tone={scene.tone}
-              src={scene.src}
-              showLabel={false}
-              className={`w-full ${scene.aspect} transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]`}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 text-ivory">
-              <span className="editorial-heading text-2xl italic transition-colors group-hover:text-gold sm:text-3xl">
-                {scene.caption}
-              </span>
-            </div>
-          </Link>
+        {scenes.map((scene, i) => (
+          <Reveal key={scene.caption} delay={(i % 2) * 0.1} className={scene.className}>
+            <Link
+              href={scene.href}
+              className="group relative block overflow-hidden"
+            >
+              <ImagePlaceholder
+                label={scene.label}
+                tone={scene.tone}
+                src={scene.src}
+                videoSrc={scene.videoSrc}
+                showLabel={false}
+                className={`w-full ${scene.aspect} transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/65 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-ivory">
+                <span className="editorial-heading text-2xl italic transition-colors group-hover:text-gold sm:text-3xl">
+                  {scene.caption}
+                </span>
+              </div>
+            </Link>
+          </Reveal>
         ))}
       </div>
     </section>

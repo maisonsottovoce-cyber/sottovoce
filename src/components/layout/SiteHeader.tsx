@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { cx } from "@/lib/format";
@@ -41,8 +42,11 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const pathname = usePathname();
+  // Transparent, ivory-on-hero chrome only over the home page's dark hero.
+  const onHero = !scrolled && pathname === "/";
   const utility = (
-    <div className="flex items-center gap-4 text-ink sm:gap-5">
+    <div className={cx("flex items-center gap-4 sm:gap-5", onHero ? "text-ivory" : "text-ink")}>
       <button
         type="button"
         onClick={() => setSearchOpen(true)}
@@ -72,7 +76,14 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line bg-ivory/95 backdrop-blur-md">
+      <header
+        className={cx(
+          "sticky top-0 z-40 border-b transition-colors duration-500",
+          onHero
+            ? "border-transparent bg-transparent"
+            : "border-line bg-ivory/95 backdrop-blur-md",
+        )}
+      >
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           {/* Desktop */}
           <div className="hidden lg:block">
@@ -84,12 +95,13 @@ export function SiteHeader() {
             >
               <div className="flex-1">{/* spacer */}</div>
               <Link href="/" className="flex flex-1 flex-col items-center" aria-label="Maison Sottovoce home">
-                <span className={cx("brand-kicker text-muted transition-all", scrolled && "hidden")}>
+                <span className={cx("brand-kicker text-cream/70 transition-all", scrolled && "hidden")}>
                   Maison
                 </span>
                 <span
                   className={cx(
-                    "brand-logo text-purple transition-all duration-300",
+                    "brand-logo transition-all duration-300",
+                    onHero ? "text-ivory" : "text-purple",
                     scrolled ? "text-2xl" : "text-4xl xl:text-5xl",
                   )}
                 >
@@ -97,7 +109,7 @@ export function SiteHeader() {
                 </span>
                 <span
                   className={cx(
-                    "mt-1.5 text-[0.6rem] uppercase tracking-[0.26em] text-muted transition-all",
+                    "mt-1.5 text-[0.6rem] uppercase tracking-[0.26em] text-cream/60 transition-all",
                     scrolled && "hidden",
                   )}
                 >
@@ -107,7 +119,7 @@ export function SiteHeader() {
               <div className="flex flex-1 justify-end">{utility}</div>
             </div>
             <div className={cx("transition-all", scrolled ? "pb-2.5" : "pb-4")}>
-              <MainNav />
+              <MainNav onHero={onHero} />
             </div>
           </div>
 
@@ -117,12 +129,14 @@ export function SiteHeader() {
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="text-ink hover:text-purple"
+              className={cx("transition-colors", onHero ? "text-ivory" : "text-ink hover:text-purple")}
             >
               <MenuIcon />
             </button>
             <Link href="/" className="flex flex-col items-center" aria-label="Maison Sottovoce home">
-              <span className="brand-logo text-xl text-purple">SOTTOVOCE</span>
+              <span className={cx("brand-logo text-xl transition-colors", onHero ? "text-ivory" : "text-purple")}>
+                SOTTOVOCE
+              </span>
             </Link>
             {utility}
           </div>

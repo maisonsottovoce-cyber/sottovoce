@@ -6,6 +6,7 @@ import { AnnouncementBar } from "./AnnouncementBar";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { CartDrawer } from "@/components/commerce/CartDrawer";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 
 /**
  * Renders the storefront chrome (announcement bar, header, footer, cart drawer)
@@ -27,6 +28,7 @@ export function ChromeGate({
 
   return (
     <>
+      <SmoothScroll />
       <AnnouncementBar text={announcement?.text} enabled={announcement?.enabled} />
       <SiteHeader />
       <main className="flex-1">{children}</main>

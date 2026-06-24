@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { mainNav } from "@/data/navigation";
 import { cx } from "@/lib/format";
 
-export function MainNav() {
+export function MainNav({ onHero = false }: { onHero?: boolean }) {
   const pathname = usePathname();
   return (
     <nav aria-label="Primary">
@@ -17,8 +17,14 @@ export function MainNav() {
               <Link
                 href={item.href}
                 className={cx(
-                  "nav-link link-underline py-1 transition-colors hover:text-purple",
-                  active ? "text-purple" : "text-ink",
+                  "nav-link link-underline py-1 transition-colors",
+                  onHero
+                    ? active
+                      ? "text-gold"
+                      : "text-ivory/85 hover:text-gold"
+                    : active
+                      ? "text-purple"
+                      : "text-ink hover:text-purple",
                 )}
               >
                 {item.label}

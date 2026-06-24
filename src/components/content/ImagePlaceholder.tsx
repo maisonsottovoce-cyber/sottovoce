@@ -1,6 +1,7 @@
 import { cx } from "@/lib/format";
 import { assetPath } from "@/lib/asset";
 import type { PlaceholderTone } from "@/data/products";
+import { InViewVideo } from "./InViewVideo";
 
 type ToneConfig = { gradient: string; text: "light" | "dark" };
 
@@ -41,6 +42,8 @@ export type ImagePlaceholderProps = {
   tone?: PlaceholderTone;
   /** Replace with a real image later, e.g. "/images/hero/entrance.jpg". */
   src?: string;
+  /** Optional looping video; plays in view, with `src` as the poster. */
+  videoSrc?: string;
   kicker?: string;
   showLabel?: boolean;
   className?: string;
@@ -51,6 +54,7 @@ export function ImagePlaceholder({
   label,
   tone = "charcoal",
   src,
+  videoSrc,
   kicker,
   showLabel = true,
   className,
@@ -64,7 +68,13 @@ export function ImagePlaceholder({
       className={cx("relative overflow-hidden bg-charcoal", className)}
       style={{ background: cfg.gradient }}
     >
-      {src ? (
+      {videoSrc ? (
+        <InViewVideo
+          src={assetPath(videoSrc) ?? videoSrc}
+          poster={assetPath(src)}
+          className="absolute inset-0"
+        />
+      ) : src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={assetPath(src)}

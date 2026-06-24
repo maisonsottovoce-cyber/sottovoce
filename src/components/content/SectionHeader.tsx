@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cx } from "@/lib/format";
 import { ArrowRightIcon } from "@/components/ui/icons";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function SectionHeader({
   kicker,
@@ -20,7 +21,7 @@ export function SectionHeader({
   className?: string;
 }) {
   return (
-    <div
+    <Reveal
       className={cx(
         "flex flex-col gap-3",
         align === "center" ? "items-center text-center" : "items-start text-left",
@@ -57,6 +58,6 @@ export function SectionHeader({
           <ArrowRightIcon width={16} height={16} />
         </Link>
       ) : null}
-    </div>
+    </Reveal>
   );
 }

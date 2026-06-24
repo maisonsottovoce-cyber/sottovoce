@@ -14,7 +14,7 @@ export default async function Home() {
   const newArrivals = await getNewArrivals(8);
   return (
     <>
-      <HeroSection />
+      <HeroSection videoSrc="/videos/hero.mp4" poster="/images/lookbook/img_58.jpg" />
       <CategoryTiles />
       <ProductRow
         title="New in the Maison"
