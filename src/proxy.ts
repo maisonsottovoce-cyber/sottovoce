@@ -33,14 +33,16 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
-  const isLogin = pathname === "/admin/login";
+  // Reachable without an existing session (sign-in + password recovery).
+  const publicAdminPaths = ["/admin/login", "/admin/reset-password"];
+  const isPublic = publicAdminPaths.includes(pathname);
 
-  if (!user && !isLogin) {
+  if (!user && !isPublic) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     return NextResponse.redirect(url);
   }
-  if (user && isLogin) {
+  if (user && pathname === "/admin/login") {
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
     return NextResponse.redirect(url);
